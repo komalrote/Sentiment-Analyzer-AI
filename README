@@ -1,0 +1,138 @@
+Sentiment Analysis -
+An end-to-end Sentiment Analysis project implementing multiple ML and DL models (TF-IDF + Logistic Regression, LSTM, DistilBERT) with:
+FastAPI for model serving
+ LangChain + LangGraph for intelligent workflow orchestration
+ GPT4All for local LLM-based explanations
+ Streamlit for interactive UI
+ PyTest for API testing
+This project is designed with production-style structure, modular code, and explainable AI in mind.
+
+ Project Structure
+sentiment_analysis/
+│
+├── data/
+│   └── IMDB_dataset/
+│       ├── train/
+│       ├── test/
+│       ├── imdb.vocab
+│       ├── imdbEr.txt
+│       └── README
+│
+├── notebook/
+│   └── Evaluation.ipynb
+│
+├── screenshots/  /output snapshots
+│
+├── src/
+│   ├── api/
+│   │   └── app.py                  # FastAPI application
+│   │
+│   ├── chatbot/
+│   │   ├── chat.py                 # LangGraph workflow + prediction logic
+│   │   └── streamlit_chatbot.py    # Streamlit UI
+│   │
+│   ├── csv/
+│   │   └── imdb_reviews.csv        # Dataset for insights
+│   │
+│   ├── models/
+│   │   ├── distilbert/
+│   │   ├── lstm/
+│   │   ├── TF_IDF_Logistic_Reg/
+│   │   └── gpt4all-falcon-newbpe-q4_0.gguf
+│   │
+│   ├── tests/
+│   │   └── test_api.py             # Pytest API tests
+│   │
+│   ├── BERT.py
+│   ├── LSTM.py
+│   ├── preprocessing.py
+│   ├── model_utils.py
+│   ├── train_logreg.py
+│   ├── evaluate.py
+│   └── conversion.py
+│
+└── requirements.txt
+
+Models Implemented -
+
+TF-IDF + Logistic Regression
+Classical ML baseline
+Fast inference
+Interpretable
+
+LSTM (PyTorch)
+Word-level tokenization
+Sequence-based sentiment learning
+
+DistilBERT
+Transformer-based
+High accuracy
+Fine-tuned for sentiment classification
+
+
+FastAPI -
+
+Start API Server
+
+uvicorn src.api.app:app --reload
+
+Available Endpoints
+🔹 POST /predict
+{
+  "text": "The movie was amazing",
+  "model": "bert"
+}
+Response
+{
+  "sentiment": "positive",
+  "confidence": 0.97,
+  "model_used": "distilbert"
+}
+Supported models: - logistic - bert - lstm
+
+🔹 GET /metrics
+Returns evaluation metrics for all models.
+
+🔹 GET /health
+Health check endpoint.
+
+🔗 LangChain + LangGraph Workflow
+The chatbot uses a state-driven workflow:
+START
+  ↓
+PREDICT (ML/DL Model)
+  ↓
+EXPLAIN (GPT4All)
+  ↓
+DATASET INSIGHT (optional)
+  ↓
+END
+Dynamic transitions based on user input
+Dataset analysis is optional and lazy-loaded
+
+Streamlit Application -
+Run Streamlit App :
+streamlit run src/chatbot/streamlit_chatbot.py
+
+Features
+Text input
+Model selection (Logistic / LSTM / BERT)
+GPT-based explanation
+Optional dataset insight
+Clean UI
+
+Testing (PyTest)
+Run API tests:
+pytest src/tests/test_api.py -v
+Tests include: - Valid predictions - Invalid model handling - Health endpoint - Metrics endpoint
+
+
+requirement
+pip -r install requirements.txt
+
+ Explainability
+GPT4All generates human-readable explanations
+Keyword-based reasoning
+Dataset-level insights from IMDb reviews
+
+
