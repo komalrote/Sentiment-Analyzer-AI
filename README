@@ -1,13 +1,15 @@
 Sentiment Analysis -
 An end-to-end Sentiment Analysis project implementing multiple ML and DL models (TF-IDF + Logistic Regression, LSTM, DistilBERT) with:
-FastAPI for model serving
- LangChain + LangGraph for intelligent workflow orchestration
- GPT4All for local LLM-based explanations
- Streamlit for interactive UI
- PyTest for API testing
-This project is designed with production-style structure, modular code, and explainable AI in mind.
+1) FastAPI for model serving
+2) LangChain + LangGraph for intelligent workflow orchestration
+3) GPT4All for local LLM-based explanations
+4) Streamlit for interactive UI
+5) PyTest for API testing
 
- Project Structure
+--------------------------------------------------------
+
+Project Structure -
+
 sentiment_analysis/
 │
 ├── data/
@@ -52,32 +54,31 @@ sentiment_analysis/
 │   └── conversion.py
 │
 └── requirements.txt
-
-Models Implemented -
+---------------------------------------------------------------------
+Models Implemented :
 
 TF-IDF + Logistic Regression
-Classical ML baseline
-Fast inference
-Interpretable
+1) Classical ML baseline
+2) Fast inference
+3) Interpretable
 
 LSTM (PyTorch)
-Word-level tokenization
-Sequence-based sentiment learning
+1)Word-level tokenization
+2)Sequence-based sentiment learning
 
-DistilBERT
-Transformer-based
-High accuracy
-Fine-tuned for sentiment classification
-
+DistilBERT - 
+1)Transformer-based
+2)High accuracy
+3)Fine-tuned for sentiment classification
+------------------------------------------------------------
 
 FastAPI -
-
 Start API Server
 
 uvicorn src.api.app:app --reload
 
 Available Endpoints
-🔹 POST /predict
+POST /predict
 {
   "text": "The movie was amazing",
   "model": "bert"
@@ -89,13 +90,14 @@ Response
   "model_used": "distilbert"
 }
 Supported models: - logistic - bert - lstm
+----------------------------------------------------------
 
 🔹 GET /metrics
 Returns evaluation metrics for all models.
-
+--------------------------------------------------
 🔹 GET /health
 Health check endpoint.
-
+-----------------------------------------------------------------
 🔗 LangChain + LangGraph Workflow
 The chatbot uses a state-driven workflow:
 START
@@ -107,32 +109,35 @@ EXPLAIN (GPT4All)
 DATASET INSIGHT (optional)
   ↓
 END
-Dynamic transitions based on user input
-Dataset analysis is optional and lazy-loaded
+ Dynamic transitions based on user input
+ Dataset analysis is optional and lazy-loaded
+----------------------------------------------------------
 
 Streamlit Application -
 Run Streamlit App :
 streamlit run src/chatbot/streamlit_chatbot.py
 
-Features
-Text input
-Model selection (Logistic / LSTM / BERT)
-GPT-based explanation
-Optional dataset insight
-Clean UI
+Features :
+Text input
+Model selection (Logistic / LSTM / BERT)
+GPT-based explanation
+Optional dataset insight
+Clean UI
 
-Testing (PyTest)
-Run API tests:
+Testing (PyTest) :
+Run API tests-
 pytest src/tests/test_api.py -v
 Tests include: - Valid predictions - Invalid model handling - Health endpoint - Metrics endpoint
 
-
-requirement
+-----------------------------------------------------------------------
+requirement -
 pip -r install requirements.txt
 
- Explainability
-GPT4All generates human-readable explanations
-Keyword-based reasoning
-Dataset-level insights from IMDb reviews
+Explainability -
+
+GPT4All generates human-readable explanations
+Keyword-based reasoning
+Dataset-level insights from IMDb reviews
+
 
 
